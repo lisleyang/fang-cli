@@ -1,3 +1,38 @@
 #!/usr/bin/env node
 
-console.log('initing')
+const program = require('commander')		//处理第一次输入命令时的参数 例如 node index.js -p
+const chalk = require('chalk')
+const inquirer = require('inquirer')  //用来给用户提问题/交互
+
+program.usage('<template-name> [project-name]')	//[]表示可选 <>表示必选
+
+program.on('--help',function(){
+	  console.log('  Examples:')
+	  console.log()
+	  console.log(chalk.gray('    # create a new project with an official template'))
+	  console.log('    $ vue init webpack my-project')
+	  console.log()
+})
+
+program.parse(process.argv);
+
+if(!program.args.length){
+	program.help()
+}
+
+inquirer.prompt([{
+    type: 'confirm',
+    message: 'Generate project in current directory?',
+    name: 'ok'
+  }]).then(answers => {
+	// Use user feedback for... whatever!!
+});
+
+//fang init webpack myProject
+//console.log(process.argv)    
+//[ 'C:\\Program Files\\nodejs\\node.exe','C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\fang-cli\\bin\\fang-init','webpack',
+//  'myProject' ]
+
+//console.log(program.args)
+//['webpack','myProject']
+	
