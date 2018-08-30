@@ -40,14 +40,17 @@ if(!program.args.length){   //no params => show help
 let templateName = program.args[0];
 let projName = program.args[1];
 
-if(templateName == 'ie'){
+if(templateName === 'ie'){
     const spinner = ora('installing templates').start();
-    download('github:lisleyang/fangcli_ts',projName,err=>{
+    download('github:lisleyang/fangcli_ie',projName,err=>{
         if(err) spinner.fail('download fail')
-        spinner.succeed('succeed')
+        else spinner.succeed('succeed')
     })
-}else if(templateName == 'modern'){
-
+}else if(templateName === 'modern'){
+    download('github:lisleyang/fangcli_modern',projName,err=>{
+        if(err) spinner.fail('download fail')
+        else spinner.succeed('succeed')
+    })
 }else{
     console.log('template name error')
 }
